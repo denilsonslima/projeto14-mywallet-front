@@ -32,7 +32,7 @@ const Main = styled.main`
     width: 100%;
     height: 100vh;
     margin: 0 auto; 
-    padding: 0 25px;
+    padding: 25px 25px 16px;
     background-color: #8C11BE;
     display: flex;
     flex-direction: column;
@@ -49,6 +49,11 @@ const Main = styled.main`
         color: #FFFFFF;
         display: flex;
         justify-content: space-between;
+        > img {
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+        }
     }
     > div:nth-of-type(2){
         width: 100%;
@@ -76,6 +81,10 @@ const Main = styled.main`
             background: #A328D6;
             border-radius: 5px;
             padding: 9px;
+            cursor: pointer;
+            :hover {
+                background-color: #b620f7;
+            }
             > p {
                 height: 40px;
                 font-weight: 700;

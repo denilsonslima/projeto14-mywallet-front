@@ -7,7 +7,7 @@ export default function Login() {
         email: "",
         senha: ""
     })
-    console.log(form)
+
     function handleForm(e) {
         setForm({
             ...form,
@@ -17,7 +17,6 @@ export default function Login() {
 
     function autenticar(e) {
         e.preventDefault()
-        alert("oi")
     }
     return (
         <Main>
@@ -59,10 +58,11 @@ const Main = styled.main`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
     > h1 {
         font-family: 'Saira Stencil One';
-        font-style: normal;
-        font-weight: 400;
         font-size: 32px;
         line-height: 50px;
         color: #FFFFFF;
@@ -72,11 +72,9 @@ const Main = styled.main`
         > input {
             width: 100%;
             height: 58px;
-            padding-left: 15px;font-family: 'Raleway';
+            padding-left: 15px;
             border: none;
             border-radius: 5px;
-            font-style: normal;
-            font-weight: 400;
             font-size: 20px;
             line-height: 23px;
             color: #000000;
@@ -92,17 +90,17 @@ const Main = styled.main`
             background-color: #A328D6;
             border-radius: 5px;
             border: none;
-            font-family: 'Raleway';
-            font-style: normal;
             font-weight: 700;
             font-size: 20px;
             line-height: 23px;
             color: #FFFFFF;
+            cursor: pointer;
+            :hover {
+                background-color: #b620f7;
+            }
         }
     }
     > a {
-        font-family: 'Raleway';
-        font-style: normal;
         font-weight: 700;
         font-size: 15px;
         line-height: 18px;

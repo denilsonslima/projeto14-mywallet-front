@@ -1,13 +1,10 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-export default function SignUp() {
+export default function NewEntry() {
     const [form, setForm] = useState({
-        name: "",
-        email: "",
-        senha: "",
-        confirmacao: ""
+        valor: "",
+        descricao: ""
     })
 
     function handleForm(e) {
@@ -22,46 +19,29 @@ export default function SignUp() {
     }
     return (
         <Main>
-            <h1>MyWallet</h1>
+            <div>
+                <p>Nova entrada</p>
+            </div>
             <form onSubmit={autenticar}>
                 <input
                     required
                     type="text"
-                    placeholder="Name"
-                    name="name"
+                    placeholder="Valor"
+                    name="valor"
                     onChange={handleForm}
-                    value={form.name}
+                    value={form.valor}
                 />
                 <input
                     required
-                    type="email"
-                    placeholder="E-mail"
-                    name="email"
+                    type="text"
+                    placeholder="Descrição"
+                    name="descricao"
                     onChange={handleForm}
-                    value={form.email}
+                    value={form.descricao}
                 />
-                <input
-                    required
-                    type="password"
-                    placeholder="Senha"
-                    name="senha"
-                    onChange={handleForm}
-                    value={form.senha}
-                />
-                <input
-                    required
-                    type="password"
-                    placeholder="Confirme a senha"
-                    name="confirmacao"
-                    onChange={handleForm}
-                    value={form.confirmacao}
-                />
-                <button type="submit">Entrar</button>
+                <button type="submit">Salvar entrada</button>
             </form>
-            <Link to={"/"}>
-                <p>Já tem uma conta? Entre agora!</p>
-            </Link>
-        </Main>
+        </Main >
     )
 }
 
@@ -70,21 +50,21 @@ const Main = styled.main`
     width: 100%;
     height: 100vh;
     margin: 0 auto; 
-    padding: 0 25px;
+    padding: 25px 25px 16px;
     background-color: #8C11BE;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 400;
-    > h1 {
-        font-family: 'Saira Stencil One';
-        font-size: 32px;
-        line-height: 50px;
+    > div:nth-of-type(1){
+        width: 100%;
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 31px;
         color: #FFFFFF;
-        margin-bottom: 24px;
+        margin-bottom: 40px;
     }
     > form {
         display: flex;
@@ -92,6 +72,7 @@ const Main = styled.main`
         gap: 13px;
         width: 100%;
         > input {
+            width: 100%;
             height: 58px;
             padding-left: 15px;
             border: none;
@@ -101,10 +82,13 @@ const Main = styled.main`
             color: #000000;
             outline: none;
         }
+        > input[type=password] {
+            margin: 13px 0;
+        }
         > button {
             width: 100%;
             height: 46px;
-            margin-bottom: 32px;
+            margin-bottom: 36px;
             background-color: #A328D6;
             border-radius: 5px;
             border: none;
@@ -117,12 +101,5 @@ const Main = styled.main`
                 background-color: #b620f7;
             }
         }
-    }
-    > a {
-        font-weight: 700;
-        font-size: 15px;
-        line-height: 18px;
-        color: #FFFFFF;
-        text-decoration: none;
     }
 `
