@@ -1,14 +1,16 @@
+import axios from "axios"
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 export default function SignUp() {
     const [form, setForm] = useState({
         name: "",
         email: "",
-        senha: "",
-        confirmacao: ""
+        password: "",
+        repeat_password: ""
     })
+    const navigate = useNavigate()
 
     function handleForm(e) {
         setForm({
@@ -17,8 +19,14 @@ export default function SignUp() {
         })
     }
 
-    function autenticar(e) {
+    async function autenticar(e) {
         e.preventDefault()
+        try {
+            await axios.post(`${process.env.REACT_APP_API_URL}/sign-up`, form)
+            navigate("/")
+        } catch (error) {
+            alert(error.response.data)
+        }
     }
     return (
         <Main>
@@ -44,19 +52,19 @@ export default function SignUp() {
                     required
                     type="password"
                     placeholder="Senha"
-                    name="senha"
+                    name="password"
                     onChange={handleForm}
-                    value={form.senha}
+                    value={form.password}
                 />
                 <input
                     required
                     type="password"
                     placeholder="Confirme a senha"
-                    name="confirmacao"
+                    name="repeat_password"
                     onChange={handleForm}
-                    value={form.confirmacao}
+                    value={form.repeat_password}
                 />
-                <button type="submit">Entrar</button>
+                <button type="submit">Cadastrar</button>
             </form>
             <Link to={"/"}>
                 <p>Já tem uma conta? Entre agora!</p>
@@ -124,5 +132,9 @@ const Main = styled.main`
         line-height: 18px;
         color: #FFFFFF;
         text-decoration: none;
+        :hover{
+            font-size: 14.5px;
+            text-decoration: underline;
+        }
     }
 `

@@ -1,11 +1,13 @@
+import axios from "axios"
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
-export default function Login() {
+export default function Login({ setToken, setName }) {
+    const navigate = useNavigate()
     const [form, setForm] = useState({
         email: "",
-        senha: ""
+        password: ""
     })
 
     function handleForm(e) {
@@ -15,8 +17,17 @@ export default function Login() {
         })
     }
 
-    function autenticar(e) {
+    async function autenticar(e) {
         e.preventDefault()
+        try {
+            const user = await axios.post(`${process.env.REACT_APP_API_URL}/login`, form)
+            setToken(user.data.token)
+            setName(user.data.name)
+            console.log(user)
+            navigate("/home")
+        } catch (error) {
+            alert(error.response.data)
+        }
     }
     return (
         <Main>
@@ -34,9 +45,9 @@ export default function Login() {
                     required
                     type="password"
                     placeholder="Senha"
-                    name="senha"
+                    name="password"
                     onChange={handleForm}
-                    value={form.senha}
+                    value={form.password}
                 />
                 <button type="submit">Entrar</button>
             </form>
@@ -93,7 +104,8 @@ const Main = styled.main`
             font-weight: 700;
             font-size: 20px;
             line-height: 23px;
-            color: #FFFFFF;
+            color: #FFFFFF; 
+            outline-color: #A328D6;
             cursor: pointer;
             :hover {
                 background-color: #b620f7;
@@ -106,5 +118,9 @@ const Main = styled.main`
         line-height: 18px;
         color: #FFFFFF;
         text-decoration: none;
+        :hover{
+            font-size: 14.5px;
+            text-decoration: underline;
+        }
     }
 `

@@ -1,10 +1,11 @@
+import axios from "axios"
 import { useState } from "react"
 import styled from "styled-components"
 
-export default function NewEntry() {
+export default function NewEntry({ token }) {
     const [form, setForm] = useState({
-        valor: "",
-        descricao: ""
+        value: "",
+        description: ""
     })
 
     function handleForm(e) {
@@ -14,8 +15,18 @@ export default function NewEntry() {
         })
     }
 
-    function autenticar(e) {
+    async function autenticar(e) {
         e.preventDefault()
+        try {
+            await axios.post(`${process.env.REACT_APP_API_URL}/movement`, { ...form, type: "entrada" }, { headers: { Authorization: `Bearer ${token}` } })
+            alert("sucesso")
+            setForm({
+                value: "",
+                description: ""
+            })
+        } catch (error) {
+            console.log(error.response.data)
+        }
     }
     return (
         <Main>
@@ -27,17 +38,17 @@ export default function NewEntry() {
                     required
                     type="text"
                     placeholder="Valor"
-                    name="valor"
+                    name="value"
                     onChange={handleForm}
-                    value={form.valor}
+                    value={form.value}
                 />
                 <input
                     required
                     type="text"
                     placeholder="Descrição"
-                    name="descricao"
+                    name="description"
                     onChange={handleForm}
-                    value={form.descricao}
+                    value={form.description}
                 />
                 <button type="submit">Salvar entrada</button>
             </form>
