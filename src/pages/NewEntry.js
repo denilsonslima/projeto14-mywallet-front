@@ -59,7 +59,8 @@ export default function NewEntry({ token }) {
 const Main = styled.main`
     max-width: 500px;
     width: 100%;
-    height: 100vh;
+    max-height: 100vh;
+    height: 100%;
     margin: 0 auto; 
     padding: 25px 25px 16px;
     background-color: #8C11BE;

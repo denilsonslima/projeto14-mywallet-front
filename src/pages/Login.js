@@ -61,7 +61,8 @@ export default function Login({ setToken, setName }) {
 const Main = styled.main`
     max-width: 500px;
     width: 100%;
-    height: 100vh;
+    max-height: 100vh;
+    height: 100%;
     margin: 0 auto; 
     padding: 0 25px;
     background-color: #8C11BE;
